@@ -27,6 +27,9 @@ var charsUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var charsNumeric = "0123456789"
 
 var charsSpecial = "!@#$%^&*()"
+
+var userChoice = []
+
 // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
 var lowercaseSelect = window.confirm("Please select one or more of the following character options to be included in your password: LOWERCASE CHARACTERS?")
 
@@ -69,8 +72,6 @@ var specialSelect = window.confirm("Please select one or more of the following c
 console.log(specialSelect)
 
 
-
-var userChoice = []
 var definedItem = []
 var pw = []
 
@@ -85,19 +86,19 @@ function generatePassword() {
   }
     
   if (lowercaseSelect) {
-    userChoice.concat(charsLowercase.split(''));
+    var userChoice = userChoice.concat(charsLowercase.split(''));
     definedItem.push(randomizer(charsLowercase))
   }
   if (numericSelect) {
-    userChoice.concat(charsNumeric.split(''))
+    var userChoice = userChoice.concat(charsNumeric.split(''))
     definedItem.push(randomizer(charsNumeric))
   }
   if (uppercaseSelect) {
-    userChoice.concat(charsUppercase.split(''))
+    var userChoice = userChoice.concat(charsUppercase.split(''))
     definedItem.push(randomizer(charsUppercase))
   }
   if (specialSelect) {
-    userChoice.concat(charsSpecial.split(''))
+    var userChoice = userChoice.concat(charsSpecial.split(''))
     definedItem.push(randomizer(charsSpecial))
   }
 
@@ -107,10 +108,6 @@ function generatePassword() {
   }
 
   console.log(pw)
-
-  for (var i = 0; i < definedItem.length; i++) {
-    pw[i] = definedItem[i]
-  }
 
   console.log(definedItem)
 
@@ -122,12 +119,12 @@ function generatePassword() {
       document.location.reload(true)
     }
   }
-  return(pw)
+  return(pwJoin)
 }
 
 console.log("userChoice", userChoice)
 
-var password = pw.join('')
+var pwJoin = pw.join('')
 // WHEN all prompts are answered
 // THEN a password is generated that matches the selected criteria
 // WHEN the password is generated
