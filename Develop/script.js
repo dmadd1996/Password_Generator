@@ -69,6 +69,7 @@ var specialSelect = window.confirm("Please select one or more of the following c
 console.log(specialSelect)
 
 
+
 var userChoice = []
 var definedItem = []
 var pw = []
@@ -84,19 +85,19 @@ function generatePassword() {
   }
     
   if (lowercaseSelect) {
-    var userChoice = userChoice.concat(charsLowercase.split(''));
+    userChoice.concat(charsLowercase.split(''));
     definedItem.push(randomizer(charsLowercase))
   }
   if (numericSelect) {
-    var userChoice = userChoice.concat(charsNumeric.split(''))
+    userChoice.concat(charsNumeric.split(''))
     definedItem.push(randomizer(charsNumeric))
   }
   if (uppercaseSelect) {
-    var userChoice = userChoice.concat(charsUppercase.split(''))
+    userChoice.concat(charsUppercase.split(''))
     definedItem.push(randomizer(charsUppercase))
   }
   if (specialSelect) {
-    var userChoice = userChoice.concat(charsSpecial.split(''))
+    userChoice.concat(charsSpecial.split(''))
     definedItem.push(randomizer(charsSpecial))
   }
 
@@ -121,7 +122,10 @@ function generatePassword() {
       document.location.reload(true)
     }
   }
+  return(pw)
 }
+
+console.log("userChoice", userChoice)
 
 var password = pw.join('')
 // WHEN all prompts are answered
@@ -141,7 +145,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
