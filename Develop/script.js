@@ -71,68 +71,63 @@ console.log(specialSelect)
 
 var userChoice = []
 var definedItem = []
-
-// WHEN I answer each prompt
-if (lowercaseSelect) {
-  var userChoice = userChoice.concat(charsLowercase.split(''));
-  definedItem.push(randomizer(charsLowercase))
-}
-if (numericSelect) {
-  var userChoice = userChoice.concat(charsNumeric.split(''))
-  definedItem.push(randomizer(charsNumeric))
-}
-if (uppercaseSelect) {
-  var userChoice = userChoice.concat(charsUppercase.split(''))
-  definedItem.push(randomizer(charsUppercase))
-}
-if (specialSelect) {
-  var userChoice = userChoice.concat(charsSpecial.split(''))
-  definedItem.push(randomizer(charsSpecial))
-}
-
 var pw = []
 
-for (var i = 0; i < passwordSize; i++) {
-  var character = randomizer(userChoice);
-  pw.push(character)
-}
+// WHEN I answer each prompt
 
-console.log(pw)
+function generatePassword() {
+  function randomizer(array) {
+    var index = Math.floor(Math.random()*array.length);
+    //console.log(index);
+    var randomChar = array[index];
+    return randomChar
+  }
+    
+  if (lowercaseSelect) {
+    var userChoice = userChoice.concat(charsLowercase.split(''));
+    definedItem.push(randomizer(charsLowercase))
+  }
+  if (numericSelect) {
+    var userChoice = userChoice.concat(charsNumeric.split(''))
+    definedItem.push(randomizer(charsNumeric))
+  }
+  if (uppercaseSelect) {
+    var userChoice = userChoice.concat(charsUppercase.split(''))
+    definedItem.push(randomizer(charsUppercase))
+  }
+  if (specialSelect) {
+    var userChoice = userChoice.concat(charsSpecial.split(''))
+    definedItem.push(randomizer(charsSpecial))
+  }
 
-for (var i = 0; i < definedItem.length; i++) {
-  pw[i] = definedItem[i]
-}
+  for (var i = 0; i < passwordSize; i++) {
+    var character = randomizer(userChoice);
+    pw.push(character)
+  }
 
-console.log(definedItem)
+  console.log(pw)
 
-// THEN my input should be validated and at least one character type should be selected
+  for (var i = 0; i < definedItem.length; i++) {
+    pw[i] = definedItem[i]
+  }
 
-if(definedItem.length === 0) {
-  var reload = window.confirm("You must select at least one character type. Reload and try again.");
-  if (reload) {
-    document.location.reload(true)
+  console.log(definedItem)
+
+  // THEN my input should be validated and at least one character type should be selected
+
+  if(definedItem.length === 0) {
+    var reload = window.confirm("You must select at least one character type. Reload and try again.");
+    if (reload) {
+      document.location.reload(true)
+    }
   }
 }
 
-function randomizer(array) {
-  var index = Math.floor(Math.random()*array.length);
-  //console.log(index);
-  var randomChar = array[index];
-  return randomChar
-}
-
-
-
-//console.log("Random Chaacter: ", randomizer(charsLowercase));
-
-
-
+var password = pw.join('')
 // WHEN all prompts are answered
 // THEN a password is generated that matches the selected criteria
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
-
-var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -140,10 +135,6 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 
 var myDiv = document.getElementById("myDiv")
-
-var pwJoin = pw.join('')
-
-console.log(pwJoin)
 
 function writePassword() {
   var password = generatePassword();
@@ -155,4 +146,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
