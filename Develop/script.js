@@ -92,7 +92,7 @@ if (specialSelect) {
 
 var pw = []
 
-for (var i = definedItem.length; i < passwordSize; i++) {
+for (var i = 0; i < passwordSize; i++) {
   var character = randomizer(userChoice);
   pw.push(character)
 }
@@ -141,16 +141,9 @@ var generateBtn = document.querySelector("#generate");
 
 var myDiv = document.getElementById("myDiv")
 
-var pwToString = pw.toString()
-
-var definedItemToString = definedItem.toString()
-
-var pwJoin = pwToString.join("")
-
-var definedItemJoin = definedItemToString.join("")
+var pwJoin = pw.join('')
 
 console.log(pwJoin)
-
 
 function writePassword() {
   var password = generatePassword();
